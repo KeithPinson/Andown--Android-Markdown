@@ -1,5 +1,23 @@
 apply plugin: 'java'
+apply plugin: 'maven-publish'
+
+group = 'com.keithpinson'
+version = '1.0.0'
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'org.scala-lang:scala-library:2.11.6'
+    testCompile 'org.specs2:specs2_2.11:2.4.17'
 }
+
+//
+// Use Gradle task, 'publishToMavenLocal', to install the jar locally
+//
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+}
+
